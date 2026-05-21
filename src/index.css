@@ -1,0 +1,871 @@
+/* ==========================================
+   🎯 PREMIUM STYLING SYSTEM - JOE TFT (REACT VERSION)
+   ========================================== */
+
+/* 1. Custom Font Declarations (Vite Public folder mapping) */
+@font-face {
+    font-family: AntipastoBold;
+    src: url('/fonts/Antipasto/AntipastoPro-Bold_trial.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Antipasto;
+    src: url('/fonts/Antipasto/AntipastoPro-Medium_trial.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: AntipastoLight;
+    src: url('/fonts/Antipasto/AntipastoPro-Light_trial.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: AntipastoExtraLight;
+    src: url('/fonts/Antipasto/AntipastoPro-Extralight_trial.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: WastedVindey;
+    src: url('/fonts/Wasted-Vindey.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 2. Design Tokens & Variables */
+:root {
+    --bg-primary: #05040a;
+    --bg-secondary: #0c0b18;
+    --bg-tertiary: #131229;
+
+    /* Riot/TFT gold client palette */
+    --accent-gold: #c89b3c;
+    --accent-gold-glow: rgba(200, 155, 60, 0.4);
+    --accent-gold-light: #f0c265;
+
+    /* Magic portal visual layers */
+    --accent-cyan: #00f0ff;
+    --accent-cyan-glow: rgba(0, 240, 255, 0.35);
+    --accent-violet: #8e2de2;
+    --accent-violet-glow: rgba(142, 45, 226, 0.4);
+
+    /* Typography color scales */
+    --text-primary: #f0edf6;
+    --text-secondary: #b3aed2;
+    --text-muted: #6f6b8f;
+
+    /* Panel border transparency definitions */
+    --border-gold: rgba(200, 155, 60, 0.2);
+    --border-gold-hover: rgba(240, 194, 101, 0.5);
+    --glass-bg: rgba(8, 7, 17, 0.7);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+    --transition-speed: 0.3s;
+    --transition-curve: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 3. Base Elements Mapping */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+/* Animated starfield gaming background overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(142, 45, 226, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(8, 7, 17, 0.5) 0%, #05040a 100%);
+    z-index: -2;
+}
+
+/* Star/hexagon grid panel */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--border-gold) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* 4. Elegant Glassmorphism Layout Panels */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: all var(--transition-speed) var(--transition-curve);
+    overflow: hidden;
+}
+
+.glass-panel:hover {
+    border-color: var(--border-gold-hover);
+    box-shadow: 0 12px 40px 0 rgba(200, 155, 60, 0.15);
+}
+
+/* Modular Header Navbar */
+.main-header {
+    background: rgba(12, 11, 24, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--accent-gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--accent-gold);
+    filter: drop-shadow(0 0 8px var(--accent-gold-glow));
+    animation: rotateLogo 10s linear infinite;
+}
+
+.site-main-title {
+    font-family: AntipastoBold, 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links-list {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+}
+
+.nav-links-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all var(--transition-speed) var(--transition-curve);
+    position: relative;
+    padding: 6px 0;
+}
+
+.nav-links-list a:hover {
+    color: var(--accent-gold-light);
+    text-shadow: 0 0 10px var(--accent-gold-glow);
+}
+
+.nav-links-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+    transition: width var(--transition-speed) var(--transition-curve);
+}
+
+.nav-links-list a:hover::after {
+    width: 100%;
+}
+
+/* Main Workspace Core layout grid mapping */
+.main-content-layout {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .main-content-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 5. Profile Sidebar Panel UI Components */
+.profile-card-container {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: fit-content;
+}
+
+.avatar-border-frame {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 24px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-violet) 50%, var(--accent-cyan) 100%);
+    box-shadow: 0 0 20px rgba(200, 155, 60, 0.3);
+    transition: transform 0.5s var(--transition-curve);
+}
+
+.avatar-border-frame::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-gold-light);
+    opacity: 0;
+    transform: scale(1.03);
+    transition: all 0.5s var(--transition-curve);
+    box-shadow: 0 0 30px var(--accent-gold-glow);
+}
+
+.profile-card-container:hover .avatar-border-frame {
+    transform: scale(1.04) rotate(3deg);
+}
+
+.profile-card-container:hover .avatar-border-frame::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.avatar-profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg-secondary);
+    background-color: var(--bg-tertiary);
+    display: block;
+}
+
+.gamertag-title {
+    font-family: AntipastoBold, 'Outfit', sans-serif;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gamertag-title::after {
+    content: '👑';
+    font-size: 1.4rem;
+}
+
+.champ-subtitle-lore {
+    font-family: WastedVindey, 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    color: var(--accent-gold-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(240, 194, 101, 0.3);
+}
+
+.profile-social-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.circular-social-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-gold);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all var(--transition-speed) var(--transition-curve);
+}
+
+.circular-social-btn:hover {
+    color: var(--accent-gold-light);
+    border-color: var(--accent-gold-light);
+    background: rgba(200, 155, 60, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--accent-gold-glow);
+}
+
+.circular-social-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* 6. Main Dashboard Content Panels */
+.dashboard-layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.dashboard-subgrid-panels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-subgrid-panels {
+        grid-template-columns: 1fr;
+    }
+}
+
+.widget-panel-container {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-main-title {
+    font-family: AntipastoBold, 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    color: var(--accent-gold-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-gold);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.widget-icon-vector {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Match Placements List UI */
+.matches-history-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.match-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-gold);
+    transition: all var(--transition-speed);
+}
+
+.match-history-row:hover {
+    transform: translateX(4px);
+    background: var(--bg-tertiary);
+}
+
+.placement-badge-layout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.round-placement-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--bg-primary);
+}
+
+.placement-gold {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.4);
+}
+
+.placement-silver {
+    background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+    box-shadow: 0 0 10px rgba(149, 165, 166, 0.4);
+}
+
+.placement-normal {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+}
+
+.match-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.match-comp-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.match-date-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.match-chip-badge {
+    background: rgba(142, 45, 226, 0.15);
+    border: 1px solid rgba(142, 45, 226, 0.3);
+    color: #a855f7;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Masteries Trait Grid UI */
+.mastery-traits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.mastery-trait-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all var(--transition-speed);
+}
+
+.mastery-trait-card:hover {
+    border-color: var(--border-gold-hover);
+    background: var(--bg-tertiary);
+}
+
+.trait-icon-wrapper {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: #1e1b4b;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.syn-badge-prism {
+    border: 1.5px solid var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan-glow);
+}
+
+.syn-badge-prism svg {
+    fill: var(--accent-cyan);
+}
+
+.syn-badge-gold {
+    border: 1.5px solid var(--accent-gold);
+    box-shadow: 0 0 8px var(--accent-gold-glow);
+}
+
+.syn-badge-gold svg {
+    fill: var(--accent-gold-light);
+}
+
+.trait-details-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.trait-name-bold {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.trait-tier-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* 7. Synergy Strategy Board Builder Interactive Grid */
+.board-builder-fullwidth {
+    padding: 24px;
+}
+
+.builder-desc-para {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.champs-selectors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.champ-node-block {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--transition-speed) var(--transition-curve);
+    position: relative;
+}
+
+.champ-node-block:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-gold-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.champ-node-block.node-active {
+    background: rgba(200, 155, 60, 0.1);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px var(--accent-gold-glow);
+}
+
+.champ-node-block.node-active::before {
+    content: '✓';
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.champ-mockup-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1e1a38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    transition: all var(--transition-speed);
+}
+
+.champ-node-block.node-active .champ-mockup-circle {
+    filter: drop-shadow(0 0 6px var(--accent-gold-glow));
+}
+
+.champ-node-name-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.champ-node-trait-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Live Synergy Outputs Grid */
+.builder-live-display-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(5, 4, 10, 0.6);
+    border-radius: 10px;
+    border: 1px dashed var(--border-gold);
+}
+
+@media (max-width: 600px) {
+    .builder-live-display-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+.live-synergies-column {
+    border-right: 1px solid var(--border-gold);
+    padding-right: 20px;
+}
+
+@media (max-width: 600px) {
+    .live-synergies-column {
+        border-right: none;
+        border-bottom: 1px solid var(--border-gold);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+}
+
+.live-synergies-column h4,
+.live-bench-column h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.live-synergies-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.live-synergies-empty-txt {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.live-synergy-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    animation: slideUp 0.25s ease-out forwards;
+}
+
+.live-synergy-badge-tier {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.badge-tier-1 {
+    background: #555;
+    color: #fff;
+}
+
+.badge-tier-2 {
+    background: #b08d57;
+    color: #fff;
+}
+
+.badge-tier-3 {
+    background: #c89b3c;
+    color: #000;
+}
+
+.badge-tier-4 {
+    background: #00f0ff;
+    color: #000;
+}
+
+.live-bench-units-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-content: flex-start;
+}
+
+.live-bench-empty-txt {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.live-bench-unit-tag {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: scaleIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.live-bench-unit-remove-btn {
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 900;
+}
+
+/* 8. Lore & Quote Carousel UI Components */
+.lore-biography-fullwidth {
+    padding: 24px;
+}
+
+.lore-bio-text-para {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.lore-quote-box {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent-violet);
+    padding: 12px 18px;
+    border-radius: 0 8px 8px 0;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lore-quote-text {
+    font-family: AntipastoBold, 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 4px;
+    transition: opacity 0.4s ease;
+}
+
+.lore-quote-author {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-violet);
+    align-self: flex-end;
+    transition: opacity 0.4s ease;
+}
+
+/* Footer Section UI */
+footer {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.footer-text-element {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.footer-text-element::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--border-gold);
+}
+
+/* 9. Design Keyframes Animations */
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
